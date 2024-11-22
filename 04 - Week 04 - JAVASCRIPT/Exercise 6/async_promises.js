@@ -9,7 +9,7 @@ function fetchUserData(userId) {
         console.log("Fetching the user's data...");
         setTimeout(() => {
             const dataBase = {
-                777: { id: 777, firstName: "Usisipho", email: "usimxi711@gmail.com", registrationDate: "22/12/2024" }
+                711: { id: 711, firstName: "Usisipho", email: "usimxi711@gmail.com", registrationDate: "02/02/2024" }
             };
             const user = dataBase[userId];
             // Check if userId is positive
@@ -25,14 +25,14 @@ function fetchUserData(userId) {
 function generateUserProfileHTML(user) {
     return `
         <div class="user-profile">
-            <h2>${user.name}</h2>
+            <h2>${user.firstName}</h2>
             <p><strong>Email:</strong> <a href="mailto:${user.email}">${user.email}</a></p>
             <p><strong>Registered on:</strong> ${user.registrationDate}</p>
         </div>
     `;
 }
 // Fetching user data
-fetchUserData(712)
+fetchUserData(711)
     .then(user => {
         console.log("Data retrieved:", user);
         // Generate and display the user's profile as HTML
