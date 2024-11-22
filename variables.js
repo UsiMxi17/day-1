@@ -446,7 +446,7 @@ async function fetchAPI() {
         // Find and log the dream car of the first two non-criminal friends
         for (let i = 0; i < Math.min(2, nonCriminals.length); i++) {
             const friend = nonCriminals[i];
-            console.log(`${friend.firstName} ${friend.lastName}'s dream car is a ${friend.dreamCar}.`);
+            console.log(`${friend.firstName} ${friend.lastName}'s dream cars are ${friend.dreamCars}.`);
         }
 
     } catch (error) {
