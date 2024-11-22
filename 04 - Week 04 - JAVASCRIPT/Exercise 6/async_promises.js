@@ -4,42 +4,44 @@
 // - If userId is negative or zero, reject with an error 
 // - User data should include: id, name, email, and registrationDate
 
-// Function to simulate fetching user data
 function fetchUserData(userId) {
     return new Promise((resolve, reject) => {
+        console.log("Fetching the user's data...");
         setTimeout(() => {
-            if (userId > 0) {
-                // Simulate user data
-                const userData = {
-                    id: userId,
-                    name: `User ${userId}`,
-                    email: `user${userId}@example.com`,
-                    registrationDate: new Date().toISOString()
-                };
-                resolve(userData);
+            const dataBase = {
+                777: { id: 777, firstName: "Usisipho", email: "usimxi711@gmail.com", registrationDate: "22/12/2024" }
+            };
+            const user = dataBase[userId];
+            // Check if userId is positive
+            if (userId > 0 && user) {
+                resolve(user); // Resolve with user data
             } else {
-                reject(new Error('Invalid userId. Must be a positive number.'));
+                reject(new Error("User not found or invalid ID")); // Reject with an error
             }
-        }, 1500); // Resolve/reject after 1.5 seconds
+        }, 1500); // Resolve after 1.5 seconds
     });
 }
-
-// Example usage of fetchUserData
-async function fetchAPI(userId) {
-    try {
-        const userData = await fetchUserData(userId);
-        console.log('User Data:', userData);
-    } catch (error) {
-        console.error('Error fetching user data:', error.message);
-    }
+// Function to generate HTML for the user's profile
+function generateUserProfileHTML(user) {
+    return `
+        <div class="user-profile">
+            <h2>${user.name}</h2>
+            <p><strong>Email:</strong> <a href="mailto:${user.email}">${user.email}</a></p>
+            <p><strong>Registered on:</strong> ${user.registrationDate}</p>
+        </div>
+    `;
 }
-
-// Call fetchAPI with a positive userId
-fetchAPI(1); // This will resolve and log the user data
-
-// Call fetchAPI with a negative userId
-fetchAPI(-1); // This will reject and log the error
-
+// Fetching user data
+fetchUserData(712)
+    .then(user => {
+        console.log("Data retrieved:", user);
+        // Generate and display the user's profile as HTML
+        const userHTML = generateUserProfileHTML(user);
+        console.log("Generated HTML:\n", userHTML);
+    })
+    .catch(error => {
+        console.error("Error:", error.message);
+    });
 
 // Create a function that uses template literals for HTML generation 
 
