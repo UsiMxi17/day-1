@@ -1,8 +1,45 @@
 // Create a Promise that simulates fetching user data
-// - The Promise should resolve after 1.5 seconds 
+// - The Promise should resolve after 1.5 seconds
 // - If userId is positive, resolve with user data object 
 // - If userId is negative or zero, reject with an error 
 // - User data should include: id, name, email, and registrationDate
+
+// Function to simulate fetching user data
+function fetchUserData(userId) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (userId > 0) {
+                // Simulate user data
+                const userData = {
+                    id: userId,
+                    name: `User ${userId}`,
+                    email: `user${userId}@example.com`,
+                    registrationDate: new Date().toISOString()
+                };
+                resolve(userData);
+            } else {
+                reject(new Error('Invalid userId. Must be a positive number.'));
+            }
+        }, 1500); // Resolve/reject after 1.5 seconds
+    });
+}
+
+// Example usage of fetchUserData
+async function fetchAPI(userId) {
+    try {
+        const userData = await fetchUserData(userId);
+        console.log('User Data:', userData);
+    } catch (error) {
+        console.error('Error fetching user data:', error.message);
+    }
+}
+
+// Call fetchAPI with a positive userId
+fetchAPI(1); // This will resolve and log the user data
+
+// Call fetchAPI with a negative userId
+fetchAPI(-1); // This will reject and log the error
+
 
 // Create a function that uses template literals for HTML generation 
 
